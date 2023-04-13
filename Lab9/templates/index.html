@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>{% block title %} Create a New Portfolio {% endblock %}</h3>
+<form action="/create" method="post">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name"
+               placeholder="Post Name" class="form-control"
+               value="{{ request.form['name'] }}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Link</label>
+        <input type="text" name="link"
+               placeholder="Post Link" class="form-control"
+               value="{{ request.form['link'] }}" required>
+    </div>
+    <label>Log:</label>
+    <div class="form-group">
+    <textarea readonly name="log" rows="6" cols="145">
+{% if messages %}{% for message in messages %}{{ message + '\n' }}{% endfor %}{% endif %}
+    </textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+<form action="/main">
+    <button type="submit" class="btn btn-primary">Clear</button>
+</form>
+{% endblock %}
